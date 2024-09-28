@@ -1,42 +1,44 @@
 "use client";
 
-const Generator = () => {
-  const baseUrl = "http://localhost:3000";
+import { useState } from "react";
+const baseUrl = "http://localhost:3000";
 
-  async function customGenerateAudio(payload?: any) {
+const Generator = () => {
+  const [prompt, setPrompt] = useState<string>('');
+
+  async function customGenerateAudio(prompt?: string) {
     const url = `${baseUrl}/api/generate`;
-    const data = {
-      prompt:
-        "A popular heavy metal song about war, sung by a deep-voiced male singer, slowly and melodiously. The lyrics depict the sorrow of people after the war.",
-      make_instrumental: false,
-      wait_audio: false,
-    };
     const test = new Request(url, {
       method: "POST",
       body: JSON.stringify({
-        prompt:
-          "A popular heavy metal song about war, sung by a deep-voiced male singer, slowly and melodiously. The lyrics depict the sorrow of people after the war.",
+        prompt: prompt,
         make_instrumental: false,
         wait_audio: false,
         model: "chirp-v3-5|chirp-v3-0",
       }),
       headers: { "Content-Type": "application/json" },
     });
-    const what = fetch(test).then((response) => {
-      console.log(response);
-    });
+    const req = fetch(test).then((response) => response.json()).then(data => data);
+    return req;
   }
 
   const onClick = async () => {
-    await customGenerateAudio();
+    await customGenerateAudio(prompt);
   };
 
-  const onInputChange = () => {};
+  const onInputChange = (value: string) => {
+    setTimeout(() => {
+      setPrompt(value);
+    }, 1000)
+    
+  };
 
   return (
     <>
       <div>
         <h1>Generate song</h1>
+        <label>Prompt song:</label>
+        <input style={{border: '1px solid black'}} onChange={e => onInputChange(e.target.value)} />
         <button onClick={onClick}>Send</button>
       </div>
     </>
