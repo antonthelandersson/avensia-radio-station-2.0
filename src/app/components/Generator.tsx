@@ -11,6 +11,7 @@ const Generator = () => {
   const [noPrompt, setNoPrompt] = useState<boolean>(false);
   const [lastSongId, setLastSongId] = useState<string>('');
   const [inputCount, setInputCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function customGenerateAudio(prompt?: string) {
     const url = `${baseUrl}/api/generate`;
@@ -33,10 +34,13 @@ const Generator = () => {
       setNoPrompt(true);
       return;
     }
+    setLoading(true);
     const data: any = await customGenerateAudio(prompt);
     setLastSongId(data[0]?.id);
     setPromptSent(true);
+    setLoading(false);
     setPrompt('');
+    setInputCount(0);
   };
 
   const onInputChange = (value: string) => {
@@ -71,7 +75,7 @@ const Generator = () => {
             style={{ backgroundColor: promptSent ? 'darkgreen' : '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10, width: 70 }} 
             onClick={onClick}
           >
-            {promptSent ? '✔' : 'Send'}
+            {promptSent ? '✔' : loading ? '⏳' : 'Send'}
           </button>
         </div>
         {
