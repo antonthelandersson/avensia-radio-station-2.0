@@ -8,6 +8,8 @@ const Generator = () => {
   const [promptSent, setPromptSent] = useState<boolean>(false);
   const [noPrompt, setNoPrompt] = useState<boolean>(false);
   const [lastSongId, setLastSongId] = useState<string>('');
+  const [inputCount, setInputCount] = useState<number>(0);
+  const [error, setError] = useState<any>();
 
   async function customGenerateAudio(prompt?: string) {
     const url = `${baseUrl}/api/generate`;
@@ -21,26 +23,28 @@ const Generator = () => {
       }),
       headers: { "Content-Type": "application/json" },
     });
-    const req = fetch(test).then((response) => response.json()).then(data => data);
+    const req = await fetch(test).then((response) => response.json()).then(data => data);
     return req;
   }
-
+  
   const onClick = async () => {
     if (prompt === '') {
       setNoPrompt(true);
       return;
     }
-    const data = await customGenerateAudio(prompt);
+    const data: any = await customGenerateAudio(prompt);
     setLastSongId(data[0]?.id);
     setPromptSent(true);
     setPrompt('');
   };
 
   const onInputChange = (value: string) => {
+    setInputCount(value?.length);
     setPrompt(value);
   };
 
   useEffect(() => {
+    console.log(error)
     if (promptSent) {
       setTimeout(() => {
         setPromptSent(false);
@@ -51,7 +55,7 @@ const Generator = () => {
         setNoPrompt(false);
       }, 3000)
     }
-  }, [promptSent, noPrompt]);
+  }, [promptSent, noPrompt, error]);
 
   return (
     <>
@@ -60,14 +64,15 @@ const Generator = () => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <label>Prompt a song: </label>
           <div>
-            <textarea style={{border: '1px solid black', padding: 5, borderRadius: 10, height: 200}} onChange={e => onInputChange(e.target.value)} value={prompt} />
+            <textarea maxLength={250} style={{ border: '1px solid black', padding: 5, borderRadius: 10, height: 200, width: '50vw' }} onChange={e => onInputChange(e.target.value)} value={prompt} />
           </div>
-            <button 
-              style={{ backgroundColor: promptSent ? 'darkgreen' : '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10, width: 70 }} 
-              onClick={onClick}
-            >
-              {promptSent ? '✔' : 'Send'}
-            </button>
+          <span>{inputCount} / 250</span>
+          <button 
+            style={{ backgroundColor: promptSent ? 'darkgreen' : '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10, width: 70 }} 
+            onClick={onClick}
+          >
+            {promptSent ? '✔' : 'Send'}
+          </button>
         </div>
         {
           noPrompt && <div style={{ color: 'red' }}>A prompt is needed</div>
@@ -81,5 +86,3 @@ const Generator = () => {
 };
 
 export default Generator;
-
-//092139
