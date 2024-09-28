@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 //change when using 
 // const baseUrl = 'http://localhost:3000';
-const baseUrl = 'https://avensia-radio-station-20.vecel.app';
+const baseUrl = 'https://avensia-radio-station-20.vercel.app';
 
 const Generator = () => {
   const [prompt, setPrompt] = useState<string>('');
