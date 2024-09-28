@@ -10,7 +10,7 @@ export default function Header() {
                 <div className="font-medium text-xl text-indigo-900 flex items-center gap-2">
                     <Logo className="w-4 h-4" />
                     <Link href='/' style={{ color: 'white'}}>
-                        Avensia Radio Station 20.24
+                        Radio Station 20.24
                     </Link>
                 </div>
             </div>
