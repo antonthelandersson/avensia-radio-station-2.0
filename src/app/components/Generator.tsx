@@ -80,7 +80,7 @@ const Generator = () => {
       </div>
       <div>
         {
-          lastSongId && <a style={{ fontSize: 16, textDecoration: 'underline' }} href={`https://suno.com/song/${lastSongId}`} >Listen the generated song here</a>
+          lastSongId && <a style={{ fontSize: 16, textDecoration: 'underline' }} href={`https://suno.com/song/${lastSongId}`} target='_blank' >Listen the generated song here</a>
         }
         <audio />
       </div>
