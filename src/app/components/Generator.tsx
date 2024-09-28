@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-const baseUrl = "http://localhost:3000";
+//change when using 
+// const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://avensia-radio-station-20.vecel.app';
 
 const Generator = () => {
   const [prompt, setPrompt] = useState<string>('');
@@ -9,7 +11,6 @@ const Generator = () => {
   const [noPrompt, setNoPrompt] = useState<boolean>(false);
   const [lastSongId, setLastSongId] = useState<string>('');
   const [inputCount, setInputCount] = useState<number>(0);
-  const [error, setError] = useState<any>();
 
   async function customGenerateAudio(prompt?: string) {
     const url = `${baseUrl}/api/generate`;
@@ -44,7 +45,6 @@ const Generator = () => {
   };
 
   useEffect(() => {
-    console.log(error)
     if (promptSent) {
       setTimeout(() => {
         setPromptSent(false);
@@ -55,7 +55,7 @@ const Generator = () => {
         setNoPrompt(false);
       }, 3000)
     }
-  }, [promptSent, noPrompt, error]);
+  }, [promptSent, noPrompt]);
 
   return (
     <>
@@ -77,9 +77,12 @@ const Generator = () => {
         {
           noPrompt && <div style={{ color: 'red' }}>A prompt is needed</div>
         }
+      </div>
+      <div>
         {
           lastSongId && <a style={{ fontSize: 16, textDecoration: 'underline' }} href={`https://suno.com/song/${lastSongId}`} >Listen the generated song here</a>
         }
+        <audio />
       </div>
     </>
   );
