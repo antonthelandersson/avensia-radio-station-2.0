@@ -7,6 +7,7 @@ const Generator = () => {
   const [prompt, setPrompt] = useState<string>('');
   const [promptSent, setPromptSent] = useState<boolean>(false);
   const [noPrompt, setNoPrompt] = useState<boolean>(false);
+  const [lastSongId, setLastSongId] = useState<string>('');
 
   async function customGenerateAudio(prompt?: string) {
     const url = `${baseUrl}/api/generate`;
@@ -29,7 +30,8 @@ const Generator = () => {
       setNoPrompt(true);
       return;
     }
-    await customGenerateAudio(prompt);
+    const data = await customGenerateAudio(prompt);
+    setLastSongId(data[0]?.id);
     setPromptSent(true);
     setPrompt('');
   };
@@ -66,7 +68,10 @@ const Generator = () => {
           </button>
         </div>
         {
-          noPrompt && <div style={{color: 'red'}}>A prompt is needed</div>
+          noPrompt && <div style={{ color: 'red' }}>A prompt is needed</div>
+        }
+        {
+          lastSongId && <a style={{ fontSize: 16, textDecoration: 'underline' }} href={`https://suno.com/song/${lastSongId}`} >Listen the generated song here</a>
         }
       </div>
     </>
