@@ -57,15 +57,17 @@ const Generator = () => {
     <>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
         <h1 style={{ fontSize: 32 }}>Generate a song</h1>
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <label>Prompt a song: </label>
-          <input style={{border: '1px solid black', padding: 5, borderRadius: 10}} onChange={e => onInputChange(e.target.value)} value={prompt} />
-          <button 
-            style={{ backgroundColor: promptSent ? 'darkgreen' : '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10, width: 70 }} 
-            onClick={onClick}
-          >
-             {promptSent ? '✔' : 'Send'}
-          </button>
+          <div>
+            <textarea style={{border: '1px solid black', padding: 5, borderRadius: 10, height: 200}} onChange={e => onInputChange(e.target.value)} value={prompt} />
+          </div>
+            <button 
+              style={{ backgroundColor: promptSent ? 'darkgreen' : '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10, width: 70 }} 
+              onClick={onClick}
+            >
+              {promptSent ? '✔' : 'Send'}
+            </button>
         </div>
         {
           noPrompt && <div style={{ color: 'red' }}>A prompt is needed</div>
