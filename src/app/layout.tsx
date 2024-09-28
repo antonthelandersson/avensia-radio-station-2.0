@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} overflow-y-scroll`} >
         <Header />
-        <main className="flex flex-col items-center m-auto w-full">
+        <main style={{ height: 'calc(100vh - 75px)', display: 'flex', justifyContent: 'center'}} className="flex flex-col items-center m-auto w-full">
           {children}
         </main>
         <Footer />

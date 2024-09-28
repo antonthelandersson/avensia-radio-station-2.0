@@ -35,14 +35,18 @@ const Generator = () => {
 
   return (
     <>
-      <div>
-        <h1>Generate song</h1>
-        <label>Prompt song:</label>
-        <input style={{border: '1px solid black'}} onChange={e => onInputChange(e.target.value)} />
-        <button onClick={onClick}>Send</button>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <h1 style={{ fontSize: 32 }}>Generate a song</h1>
+        <div>
+          <label>Prompt a song: </label>
+          <input style={{border: '1px solid black', padding: 5, borderRadius: 10}} onChange={e => onInputChange(e.target.value)} />
+          <button style={{ backgroundColor: '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10 }} onClick={onClick}>Send</button>
+        </div>
       </div>
     </>
   );
 };
 
 export default Generator;
+
+//092139
