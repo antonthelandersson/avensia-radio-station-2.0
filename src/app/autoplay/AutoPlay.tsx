@@ -49,7 +49,9 @@ export const AutoPlay: React.FC = () => {
   }, [songs]);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <div style={{ textAlign: 'center', marginTop: '20px',display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center' }}>
       {currentMedia ? (
         <>
           <h2>Now Playing: {currentMedia.title}</h2>
