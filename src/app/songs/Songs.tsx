@@ -39,6 +39,12 @@ const SongsList: React.FC = () => {
   return (
     <div>
       <h1>Media Library</h1>
+      <div style={{display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridGap: 10,
+    marginTop: 1500}}>
+
+      
       {songs.map((item) => (
         <div key={item.id}>
           <h2>{item.title}</h2>
@@ -46,6 +52,7 @@ const SongsList: React.FC = () => {
           <audio controls src={item.audio_url}></audio>
         </div>
       ))}
+      </div>
     </div>
   );
 };
