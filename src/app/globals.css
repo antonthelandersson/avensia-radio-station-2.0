@@ -18,6 +18,15 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.hover-link:hover {
+  text-decoration: underline;
+}
+
+.hover-button:hover {
+  background-color: rgb(35 100 165) !important;
+  border: 2px solid #092139;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

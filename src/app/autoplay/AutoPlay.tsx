@@ -49,12 +49,18 @@ export const AutoPlay: React.FC = () => {
   }, [songs]);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px',display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center' }}>
+    <div
+      style={{
+        textAlign: 'center',
+        marginTop: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        maxWidth: '80vw'
+      }}>
       {currentMedia ? (
         <>
-          <h2>Now Playing: {currentMedia.title}</h2>
+          <h2 style={{ fontSize: 24, marginBottom: 12}}>Now Playing: {currentMedia.title}</h2>
           <img
             src={currentMedia.image_url}
             alt={currentMedia.title}
@@ -67,9 +73,13 @@ export const AutoPlay: React.FC = () => {
             controls
             autoPlay
             onEnded={handleAudioEnded}
+            style={{ marginBottom: 10}}
           />
-          <p>Lyric: {currentMedia.lyric}</p>
-          <button onClick={playRandomMedia}>Play Random Song</button>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <p style={{ fontWeight: 'bold'}}>Lyrics: </p>
+            <p style={{ width: '50%'}}>{currentMedia.lyric}</p>
+          </div>
+          <button style={{ backgroundColor: '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 35, width: 100, height: 60 }} onClick={playRandomMedia} className='hover-button'>Next</button>
         </>
       ) : (
         <p>No media items available</p>

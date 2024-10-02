@@ -72,6 +72,7 @@ const Generator = () => {
           </div>
           <span>{inputCount} / 250</span>
           <button 
+            className='hover-button'
             style={{ backgroundColor: promptSent ? 'darkgreen' : '#092139', color: 'white', margin: '10px', padding: 5, borderRadius: 10, width: 70 }} 
             onClick={onClick}
           >
