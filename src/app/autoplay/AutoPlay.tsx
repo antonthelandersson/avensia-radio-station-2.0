@@ -52,11 +52,11 @@ export const AutoPlay: React.FC = () => {
     <div
       style={{
         textAlign: 'center',
-        marginTop: '20px',
+        height: '80vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        maxWidth: '80vw'
+        maxWidth: '80vw',
       }}>
       {currentMedia ? (
         <>

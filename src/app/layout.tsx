@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} overflow-y-scroll`} >
+      <body className={`${inter.className} overflow-y-scroll`} style={{ width: '100vw'}} >
         <Header />
         <main style={{ height: 'calc(100vh - 75px)', display: 'flex', justifyContent: 'center'}} className="flex flex-col items-center m-auto w-full">
           {children}

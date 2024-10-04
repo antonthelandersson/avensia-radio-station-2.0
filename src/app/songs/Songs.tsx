@@ -39,12 +39,15 @@ const SongsList: React.FC = () => {
   return (
     <div>
       <h1>Media Library</h1>
-      <div style={{display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gridGap: 10,
-    marginTop: 1500}}>
-
-      
+      <div
+        style={{
+          display: 'grid',
+          gridGap: 10,
+          height: '80vh',
+          width: '80vw',
+          }}
+        className='songlist-container-grid'
+      >
       {songs.map((item) => (
         <div key={item.id}>
           <h2>{item.title}</h2>
